@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <py-env>
+        - matplotlib
+    </py-env>
+
+</head>
+<body>
+    <py-script> print("Graf Ohmovog zakona")
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+napon = [12, 20, 30]
+jacina = [0.09, 0.12, 0.15]
+
+plt.plot(napon, jacina, marker='o', linestyle='--', color='g', label='otpor(Ω)')
+
+
+plt.xlabel('Napon(V)')
+plt.ylabel('Jačina struje (A)')
+plt.title('Year vs Population')
+plt.legend(loc='lower right')
+
+fig
+</py-script>
+</body>
+</html>
