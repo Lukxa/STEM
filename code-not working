@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>STEM projekat</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <py-env>
+        - matplotlib
+        - js
+        - pyodoide
+    </py-env>
+
+</head>
+
+<body>
+
+  <div>Napon 1<div>
+  <input type="number" id="napon1"/>
+
+  <div>Napon 2<div>
+  <input type="number" id="napon2"/>
+
+  <div>Napon 3<div>
+  <input type="number" id="napon3"/>
+
+  <div>Jačina 1<div>
+  <input type="number" id="jacina1"/>
+
+  <div>Jačina 2<div>
+  <input type="number" id="jacina2"/>
+
+  <div>Jačina 3<div>
+  <input type="number" id="jacina3"/>
+
+<button type="button" id="button">OK</button>
+
+
+    <py-script> 
+print("loading...")
+import matplotlib.pyplot as plt
+from js import document 
+from pyodide import create_proxy
+
+
+
+
+def runPython():
+    print("HI")
+
+    napon1= Element('napon1').element.value
+    napon2= Element('napon2').element.value
+    napon3= Element('napon3').element.value
+    jacina1= Element('jacina1').element.value
+    jacina2= Element('jacina2').element.value
+    jacina3= Element('jacina3').element.value
+
+    otpor1 = napon1/jacina1
+    otpor2 = napon2/jacina2
+    otpor3 = napon3/jacina3
+    
+    fig, ax = plt.subplots()
+    
+    napon = [napon1, napon2, napon3]
+    jacina = [jacina1, jacina2, jacina3]
+    
+    plt.plot(jacina, napon, marker='o', linestyle='--', color='g', label='Country 1')
+    
+    plt.xlabel('Year')
+    plt.ylabel('Population (M)')
+    plt.title('Year vs Population')
+    plt.legend(loc='lower right')
+    
+    fig
+
+
+
+function_proxy = create_proxy(runPython)
+
+document.getElementById("button").addEventListener("click", function_proxy)
+
+
+
+</py-script>
+</body>
+</html>
